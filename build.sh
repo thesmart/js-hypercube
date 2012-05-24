@@ -1,0 +1,1 @@
+cat src/ps.js src/ps.array.js src/ps.object.js src/ps.FactIndex.js src/ps.Cell.js src/ps.Cube.js src/ps.Cube.transforms.js | java -jar /Applications/yuicompressor-2.4.7.jar -o js-hypercube.min.js --type js --charset utf-8

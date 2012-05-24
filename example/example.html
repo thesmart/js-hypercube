@@ -1,0 +1,58 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Example for js-hypercube</title>
+	<meta name="description" content="JsHypercube is a light-weight OLAP database written in JavaScript. It is useful for any application involving the aggregation of metrics for purposes of dynamic charting.">
+</head>
+<body>
+	<header>
+
+	</header>
+	<div role="main">
+
+	</div>
+	<footer>
+
+	</footer>
+
+
+	<!-- Requires jQuery, but you could easily replace jQuery if you create $.each, $.map, $.extend, $.isArray, $.isPlainObject, $.isFunction -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="plugins.js"></script>
+
+	<!-- Typically, you would use the minified version -->
+	<script src="../src/ps.js"></script>
+	<script src="../src/ps.array.js"></script>
+	<script src="../src/ps.object.js"></script>
+	<script src="../src/ps.FactIndex.js"></script>
+	<script src="../src/ps.Cell.js"></script>
+	<script src="../src/ps.Cube.js"></script>
+	<script src="../src/ps.Cube.transforms.js"></script>
+	<!--<script src="../js-hypercube.min.js"></script>-->
+
+	<!-- Example data -->
+	<script src="example.data.js"></script>
+	<script>
+		// each fact record in the data-set has a unix-time. add standardized local-time facts
+		ps.Cube.transforms.dateLocal(window.example.data);
+
+		// turn our fact records into a cube
+		var cube	= ps.Cube.deserialize(window.example.data, ['rentals', 'sales', 'revenue'])
+
+		// run some interesting queries
+		console.info('Total Rentals', cube.sum().rentals);
+		console.info('Total Sales from Rentals', cube.sum().sales);
+		console.info('Total Revenue', '$' + cube.sum().revenue);
+		console.info('Revenue at 6pm', '$' + cube.slice({hour: 18}).sum(2).revenue);
+		console.info('Revenue at 6pm for Nintendo games', '$' + cube.slice({hour: 18, platform: 'Nintendo'}).sum(2).revenue);
+		console.info('Revenue at 6pm for Super Nintendo games', '$' + cube.slice({hour: 18, platform: 'Super Nintendo'}).sum(2).revenue);
+		console.info('Avg rentals per hour for games staring Mario', cube.slice({staring: 'Mario'}).avg(24, 2).rentals + ' units');
+		console.info('Avg rentals per hour for games staring Link', cube.slice({staring: 'Link'}).avg(24, 2).rentals + ' units');
+		console.info('Avg rentals per hour for games staring Samus', cube.slice({staring: 'Samus'}).avg(24, 2).rentals + ' units');
+	</script>
+</body>
+</html>
