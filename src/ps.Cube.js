@@ -285,6 +285,44 @@ ps.Cube.prototype.avg = function(count, opt_precision) {
 };
 
 /**
+ * Get the top measure values by sum
+ * @param {string} factName					The name of the fact to get the top results
+ * @param {string} measureName				The name of the measure to return
+ * @param {number=} opt_limit				Optional. A limit to the number of results to return
+ * @return {Object.<string, number>}		An object, in descending order, where key is a factValue and value is a summed measure
+ */
+ps.Cube.prototype.topSum = function(factName, measureName, opt_limit) {
+	var allValues		= this.getValues(factName),
+		workingValues	= [],
+		limit			= ps.isNumber(opt_limit) ? opt_limit : undefined;
+
+	for (var i = 0, l = allValues.length; i < l; ++i) {
+		// make a query
+		var query	= {};
+		query[factName] = allValues[i];
+
+		// extract a value
+		workingValues.push([allValues[i], this.slice(query).sum()[measureName]]);
+	}
+
+	// sort descending
+	workingValues.sort(function(a, b) {
+		return b[1] - a[1];
+	});
+
+	// collate into a result
+	var result	= ps.obj();
+	for (var i = 0, l = workingValues.length; i < l; ++i) {
+		result[workingValues[i][0]]	= workingValues[i][1];
+
+		if (limit && i >= limit) {
+			break;
+		}
+	}
+	return result;
+};
+
+/**
 * Turn the cube into a simple array of objects
 * @return {Array}
 */
