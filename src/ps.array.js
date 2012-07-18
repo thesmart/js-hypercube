@@ -85,10 +85,17 @@ ps.array = {
 	 * @return {Array}
 	 */
 	intersect: function(array1, array2) {
+		var a = array1.slice(0);
+		var b = array2.slice(0);
 		var results = [];
-		for (var i = 0, il = array1.length; i < il; ++i) {
-			if (ps.array.contains(array2, array1[i])) {
-				results.push(array1[i]);
+
+		// Optimzed intersect algorithm for sorted arrays from http://stackoverflow.com/a/1885660/120731
+		while (a.length > 0 && b.length > 0) {
+			if      (a[0] < b[0] ){ a.shift(); }
+			else if (a[0] > b[0] ){ b.shift(); }
+			else /* they're equal */ {
+				result.push(a.shift());
+				b.shift();
 			}
 		}
 		return results;
