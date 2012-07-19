@@ -80,25 +80,33 @@ ps.array = {
 	/**
 	 * Array values that are present in all arrays
 	 *
+	 * Only works on sorted arrays.
+	 *
 	 * @param {Array} array1
 	 * @param {Array} array2
 	 * @return {Array}
 	 */
 	intersect: function(array1, array2) {
+		var result = [];
 		var a = array1.slice(0);
 		var b = array2.slice(0);
-		var results = [];
-
-		// Optimzed intersect algorithm for sorted arrays from http://stackoverflow.com/a/1885660/120731
-		while (a.length > 0 && b.length > 0) {
-			if      (a[0] < b[0] ){ a.shift(); }
-			else if (a[0] > b[0] ){ b.shift(); }
-			else /* they're equal */ {
-				result.push(a.shift());
-				b.shift();
+		var aLast = a.length - 1;
+		var bLast = b.length - 1;
+		while (aLast >= 0 && bLast >= 0) {
+			if (a[aLast] > b[bLast] ) {
+				a.pop();
+				aLast--;
+			} else if (a[aLast] < b[bLast] ){
+				b.pop();
+				bLast--;
+			} else /* they're equal */ {
+				result.push(a.pop());
+				b.pop();
+				aLast--;
+				bLast--;
 			}
 		}
-		return results;
+		return result;
 	},
 
 	/**
