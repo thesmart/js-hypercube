@@ -106,6 +106,8 @@ ps.array = {
 				bLast--;
 			}
 		}
+		// keep intersection sorted
+		result.reverse();
 		return result;
 	},
 
