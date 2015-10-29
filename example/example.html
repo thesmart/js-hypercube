@@ -50,9 +50,9 @@
 		console.info('Revenue at 6pm', '$' + cube.slice({hour: 18}).sum(2).revenue);
 		console.info('Revenue at 6pm for Nintendo games', '$' + cube.slice({hour: 18, platform: 'Nintendo'}).sum(2).revenue);
 		console.info('Revenue at 6pm for Super Nintendo games', '$' + cube.slice({hour: 18, platform: 'Super Nintendo'}).sum(2).revenue);
-		console.info('Avg rentals per hour for games staring Mario', cube.slice({staring: 'Mario'}).avg(24, 2).rentals + ' units');
-		console.info('Avg rentals per hour for games staring Link', cube.slice({staring: 'Link'}).avg(24, 2).rentals + ' units');
-		console.info('Avg rentals per hour for games staring Samus', cube.slice({staring: 'Samus'}).avg(24, 2).rentals + ' units');
+		console.info('Avg rentals per hour for games starring Mario', cube.slice({starring: 'Mario'}).avg(24, 2).rentals + ' units');
+		console.info('Avg rentals per hour for games starring Link', cube.slice({starring: 'Link'}).avg(24, 2).rentals + ' units');
+		console.info('Avg rentals per hour for games starring Samus', cube.slice({starring: 'Samus'}).avg(24, 2).rentals + ' units');
 	</script>
 </body>
 </html>

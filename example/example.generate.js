@@ -69,7 +69,7 @@ for (var i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Super Mario Bros. 2',
 			platform: 'Nintendo',
-			staring: 'Mario'
+			starring: 'Mario'
 		},
 		measures: example.getMeasures()
 	});
@@ -85,7 +85,7 @@ for (i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Super Mario',
 			platform: 'Super Nintendo',
-			staring: 'Mario'
+			starring: 'Mario'
 		},
 		measures: example.getMeasures()
 	});
@@ -101,7 +101,7 @@ for (i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Legend of Zelda',
 			platform: 'Nintendo',
-			staring: 'Link'
+			starring: 'Link'
 		},
 		measures: example.getMeasures()
 	});
@@ -117,7 +117,7 @@ for (i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Legend of Zelda: A Link to the Past',
 			platform: 'Super Nintendo',
-			staring: 'Link'
+			starring: 'Link'
 		},
 		measures: example.getMeasures()
 	});
@@ -133,7 +133,7 @@ for (i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Metroid',
 			platform: 'Nintendo',
-			staring: 'Samus'
+			starring: 'Samus'
 		},
 		measures: example.getMeasures()
 	});
@@ -149,7 +149,7 @@ for (i = 0; i < 24; ++i) {
 		facts: {
 			name: 'Super Metroid',
 			platform: 'Super Nintendo',
-			staring: 'Samus'
+			starring: 'Samus'
 		},
 		measures: example.getMeasures()
 	});

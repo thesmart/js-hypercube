@@ -13,7 +13,7 @@ A hypercube is useful for expressing n-dimensional analytics.  Spreadsheets work
 Each data set contains n-number of _fact-records_.  A fact-record represents a specific combination of _facts_ at specific _time_.  These attributes are used like a coordinate system.  For example, consider the "Super Mario Bros. 2" video game for the Nintendo gaming system. During a 1-hour time interval, this game may have been sold 6 times, rented 43 times, and made $239.94 in revenue:
 
     // this data is fake, but represents the standard HyperCube data format
-    var data = [{"time":1331773202,"facts":{"name":"Super Mario Bros. 2","platform":"Nintendo","staring":"Mario"},"measures":{"rentals":73,"sales":9,"revenue":359.91}}, {"time":1331841602,"facts":{"name":"Metroid","platform":"Nintendo","staring":"Samus"},"measures":{"rentals":43,"sales":6,"revenue":239.94}}]; // ... etc
+    var data = [{"time":1331773202,"facts":{"name":"Super Mario Bros. 2","platform":"Nintendo","starring":"Mario"},"measures":{"rentals":73,"sales":9,"revenue":359.91}}, {"time":1331841602,"facts":{"name":"Metroid","platform":"Nintendo","starring":"Samus"},"measures":{"rentals":43,"sales":6,"revenue":239.94}}]; // ... etc
 
 You can see that each fact-record has _time_, _facts_, and _measures_ fields.  The _time_ field can be converted to local time:
 
@@ -30,7 +30,7 @@ You can then do some interesting stuff:
     // run some interesting queries
     console.info('Total Rentals', cube.sum().rentals);
     console.info('Revenue at 6pm for Super Nintendo games', '$' + cube.slice({hour: 18, platform: 'Super Nintendo'}).sum(2).revenue);
-    console.info('Avg rentals per hour for games staring Mario', cube.slice({staring: 'Mario'}).avg(24, 2).rentals + ' units');
+    console.info('Avg rentals per hour for games starring Mario', cube.slice({starring: 'Mario'}).avg(24, 2).rentals + ' units');
     
 Source Structure
 -----------
